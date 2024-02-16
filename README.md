@@ -4,6 +4,9 @@ Playground for testing front-end visualizations of vector clustering.
 
 The goal is to visualize the clusters of the embeddings and the metadata in a way that is intuitive and informative.
 
+![image](https://github.com/nulib/vector-viz-demo/assets/3020266/99f6ac53-32df-4387-be22-05a0e983dcfd)
+
+
 ## Data
 
 The dataset is combination of metadata and vector embeddings of the metadata. The embeddings are generated using the [INSERT HERE] library.
