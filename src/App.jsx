@@ -1,10 +1,15 @@
 import "./App.css";
 
 import NulData from "./NulData";
+import PlotlyTest from "./Plotly";
 import TensorFlow from "./TensorFlow";
 import UMap from "./UMap";
 
 const displays = [
+  {
+    label: "Plotly React",
+    component: <PlotlyTest />,
+  },
   {
     label: "NUL Data",
     component: <NulData />,

@@ -1,78 +1,87 @@
-import ScatterChart from "./ScatterChart";
+import * as d3 from "d3";
+
+import Plot from "react-plotly.js";
+import React from "react";
 import textAndVectorData from "./data/vectors_tsne_2d_reduced.json";
 
-const NulData = () => {
-  const data = {
-    labels: [],
-    vectors: [],
-  };
-  for (const item of textAndVectorData) {
-    data.vectors.push({
-      x: item.x,
-      y: item.y,
-    });
-    data.labels.push(item.title);
-  }
+function unpack(rows, key) {
+  return rows.map(function (row) {
+    return row[key];
+  });
+}
 
-  const chartData = {
-    labels: data.labels, // Create labels for x-axis
-    datasets: [
-      {
-        label: "NUL Digital Collections",
-        data: textAndVectorData,
-        pointRadius: 3,
-        backgroundColor: "rgba(000, 127, 164, 1)",
+const PlotlyTest = () => {
+  const [rows, setRows] = React.useState([]);
+
+  React.useEffect(() => {
+    async function getData() {
+      const response = await d3.csv(
+        "https://raw.githubusercontent.com/plotly/datasets/master/3d-scatter.csv"
+      );
+      console.log("response", response);
+      setRows(response);
+    }
+    getData();
+  }, []);
+
+  const trace1 = {
+    x: unpack(rows, "x1"),
+    y: unpack(rows, "y1"),
+    z: unpack(rows, "z1"),
+    mode: "markers",
+    marker: {
+      size: 12,
+      line: {
+        color: "rgba(217, 217, 217, 0.14)",
+        width: 0.5,
       },
-    ],
-  };
-
-  const dataDisplay = [
-    {
-      label: "TSNE 2D Reduced Data",
-      data: JSON.stringify(textAndVectorData, null, 2),
+      opacity: 0.8,
     },
-  ];
+    type: "scatter3d",
+  };
 
-  const options = {
-    tooltips: {
-      callbacks: {
-        label: function (tooltipItem, data) {
-          console.log("data", data);
-          // Get the data point value
-          var value =
-            data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-          console.log("value", value);
-          // Return a string that contains HTML tags
-          return "<b>X: </b>" + value.x + "<br><b>Y: </b>" + value.y;
-        },
+  const trace2 = {
+    x: unpack(rows, "x2"),
+    y: unpack(rows, "y2"),
+    z: unpack(rows, "z2"),
+    mode: "markers",
+    marker: {
+      color: "rgb(127, 127, 127)",
+      size: 12,
+      symbol: "circle",
+      line: {
+        color: "rgb(204, 204, 204)",
+        width: 1,
       },
+      opacity: 0.8,
+    },
+    type: "scatter3d",
+  };
+
+  const data = [trace1, trace2];
+  const layout = {
+    title: "3D Scatter Plot",
+    autosize: true,
+    margin: {
+      l: 0,
+      r: 0,
+      b: 0,
+      t: 0,
     },
   };
 
   return (
-    <div className="space-y-8">
-      <ScatterChart data={chartData} options={options} />
-
-      <div className="grid gap-5 grid-col1 md:grid-cols-1">
-        {dataDisplay.map((item, index) => (
-          <div key={index}>
-            <h3 className="mb-4 text-xl">{item.label}</h3>
-            <div className="w-full p-5 overflow-auto bg-gray-100 border h-96">
-              <pre>{item.data}</pre>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="space-y-5 text-gray-600">
-        <h3 className="mb-4 text-xl">Info</h3>
-        <p>
-          This is showing a sample of the whole index data. <pre>x, y</pre>{" "}
-          values have been added to the data which represent the 2D dimension.
-        </p>
-      </div>
+    <div className="space-y-8 h-[60vh]">
+      {rows?.length > 0 && (
+        <Plot
+          data={data}
+          layout={layout}
+          useResizeHandler
+          style={{ width: "100%", height: "100%" }}
+        />
+      )}
     </div>
   );
 };
 
-export default NulData;
+export default PlotlyTest;
