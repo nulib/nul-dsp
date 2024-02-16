@@ -67,9 +67,8 @@ const NulData = () => {
       <div className="space-y-5 text-gray-600">
         <h3 className="mb-4 text-xl">Info</h3>
         <p>
-          This is showing a sample of the whole index data.{" "}
-          <strong>x, y</strong> values have been added to the data which
-          represent the 2D dimension.
+          This is showing a sample of the whole index data. <pre>x, y</pre>{" "}
+          values have been added to the data which represent the 2D dimension.
         </p>
       </div>
     </div>
