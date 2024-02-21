@@ -15,6 +15,7 @@
     "chart.js": "^4.4.1",
     "chartjs-plugin-zoom": "^2.0.1",
     "d3": "^7.8.5",
+    "lodash.debounce": "^4.0.8",
     "plotly.js-dist-min": "^2.29.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",

@@ -1,28 +1,24 @@
-import * as d3 from "d3";
-
 import { useEffect, useState } from "react";
 
 import Plot from "react-plotly.js";
-import textAndVectorData from "./data/vectors_tsne_3d_300_count.json";
+import React from "react";
+import debounce from "lodash.debounce";
+import textAndVectorData from "../data/vectors_tsne_3d_300_count.json";
 
-const PlotlyTest = () => {
+const MemoChart = React.memo(function Memo({ handlePlotItemHover }) {
   const [plotInstance, setPlotInstance] = useState(null);
 
   useEffect(() => {
-    if (plotInstance) {
-      // TODO: Stop this from firing multiple times
-      plotInstance.on("plotly_hover", function (data) {
-        const id = data.points[0].id;
-        console.log("id", id);
-      });
-    }
+    if (!plotInstance) return;
+
+    plotInstance.on("plotly_hover", debounce(handlePlotItemHover, 300));
 
     return () => {
       if (plotInstance) {
         plotInstance.removeAllListeners("plotly_hover");
       }
     };
-  }, [plotInstance]);
+  }, [handlePlotItemHover, plotInstance]);
 
   const trace1 = {
     ids: textAndVectorData.map((item) => item.id),
@@ -56,17 +52,15 @@ const PlotlyTest = () => {
   };
 
   return (
-    <div className="space-y-8 h-[60vh]">
-      <Plot
-        data={data}
-        layout={layout}
-        useResizeHandler
-        style={{ width: "100%", height: "100%" }}
-        onInitialized={(figure, graphDiv) => setPlotInstance(graphDiv)}
-        onUpdate={(figure, graphDiv) => setPlotInstance(graphDiv)}
-      />
-    </div>
+    <Plot
+      data={data}
+      layout={layout}
+      useResizeHandler
+      style={{ width: "100%", height: "100%" }}
+      onInitialized={(figure, graphDiv) => setPlotInstance(graphDiv)}
+      onUpdate={(figure, graphDiv) => setPlotInstance(graphDiv)}
+    />
   );
-};
+});
 
-export default PlotlyTest;
+export default MemoChart;

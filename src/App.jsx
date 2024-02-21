@@ -1,7 +1,7 @@
 import "./App.css";
 
 import NulData from "./NulData";
-import PlotlyTest from "./Plotly";
+import PlotlyTest from "./Plotly/Wrapper";
 import TensorFlow from "./TensorFlow";
 import UMap from "./UMap";
 
