@@ -6,11 +6,12 @@ export async function getWork(id) {
     const { data: work } = await response.json();
 
     return {
-      id: work.id,
-      title: work.title,
-      description: work.description,
-      thumbnail: work.thumbnail,
+      canonicalLink: work.canonical_link,
       collection: work.collection,
+      description: work.description,
+      id: work.id,
+      thumbnail: work.thumbnail,
+      title: work.title,
     };
   } catch (error) {
     console.error("Error fetching work data", error);
