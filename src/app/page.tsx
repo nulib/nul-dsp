@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Box, Flex, Heading, Link } from "@radix-ui/themes";
 
 const items = [
   {
@@ -21,24 +21,28 @@ const items = [
 
 export default function Home() {
   return (
-    <div className="h-screen flex flex-col justify-center items-center">
-      <h1 className="pb-10 text-2xl text-center">Vector visualizations</h1>
-      <ul className="space-y-10">
-        {items.map((item) => (
-          <li
-            key={item.title}
-            className="flex flex-col items-center max-w-md text-center"
+    <Flex
+      gap="5"
+      direction="column"
+      justify="center"
+      align="center"
+      className="h-screen w-full"
+    >
+      <Heading as="h1">Vector visualizations</Heading>
+      {items.map((item) => (
+        <Box
+          key={item.title}
+          className="flex flex-col items-center max-w-md text-center"
+        >
+          <Link
+            href={item.href}
+            className="text-xl pb-2 underline hover:no-underline"
           >
-            <Link
-              href={item.href}
-              className="text-xl pb-2 underline hover:no-underline"
-            >
-              {item.title}
-            </Link>
-            <p>{item.description}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+            {item.title}
+          </Link>
+          <p>{item.description}</p>
+        </Box>
+      ))}
+    </Flex>
   );
 }
