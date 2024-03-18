@@ -1,9 +1,11 @@
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
 
+import { Box, Flex, Theme } from "@radix-ui/themes";
+
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
-import { Theme } from "@radix-ui/themes";
+import NavBar from "@/ui/layout/navbar";
 import { ThemeProvider } from "next-themes";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,7 +24,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-mono`}>
         <ThemeProvider attribute="class">
-          <Theme>{children}</Theme>
+          <Theme>
+            <Flex width="100%" direction="column">
+              <NavBar />
+              <Box py="5"></Box>
+              {children}
+            </Flex>
+          </Theme>
         </ThemeProvider>
       </body>
     </html>

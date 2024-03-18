@@ -26,7 +26,7 @@ export default function Home() {
       direction="column"
       justify="center"
       align="center"
-      className="h-screen w-full"
+      className="w-full"
     >
       <Heading as="h1">Vector visualizations</Heading>
       {items.map((item) => (
