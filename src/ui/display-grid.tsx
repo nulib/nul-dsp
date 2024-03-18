@@ -41,7 +41,6 @@ export function DisplayGridSmallColumn({
   children: React.ReactNode;
   classNames?: string;
 }) {
-  console.log("classNames", classNames);
   return (
     <Box
       className={clsx(`overflow-auto lg:h-120 h-64`, classNames && classNames)}

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import { Theme } from "@radix-ui/themes";
+import { ThemeProvider } from "next-themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-mono`}>
-        <Theme>{children}</Theme>
+        <ThemeProvider attribute="class">
+          <Theme>{children}</Theme>
+        </ThemeProvider>
       </body>
     </html>
   );
