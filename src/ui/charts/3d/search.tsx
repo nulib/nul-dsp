@@ -8,8 +8,9 @@ import {
 
 import { CHART_COLORS } from "@/lib/colors";
 import Chart from "@/ui/plotly/chart";
-import Input from "@/ui/input";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import Pre from "@/ui/pre";
+import { TextField } from "@radix-ui/themes";
 import { Work } from "@nulib/dcapi-types";
 import { searchDCApi } from "@/lib/dc-api";
 import { useDebouncedCallback } from "use-debounce";
@@ -24,7 +25,7 @@ export default function Search() {
       if (q.length > 2) {
         const results = await searchDCApi(q);
 
-        const resultsWithVectors = results.map((item) => ({
+        const resultsWithVectors = results?.map((item) => ({
           ...item,
           x: Math.random() * 100,
           y: Math.random() * 100,
@@ -61,14 +62,21 @@ export default function Search() {
   return (
     <>
       <fieldset className="mb-5 lg:w-1/2">
-        <label
-          htmlFor="search"
-          className="block text-sm font-medium leading-6 text-gray-900"
-        >
+        <label htmlFor="search" className="">
           Search
         </label>
         <div className="mt-2">
-          <Input id="search" name="search" onChange={handleSearchInput} />
+          <TextField.Root>
+            <TextField.Slot>
+              <MagnifyingGlassIcon height="16" width="16" />
+            </TextField.Slot>
+            <TextField.Input
+              placeholder="Search NUL API"
+              id="search"
+              name="search"
+              onChange={handleSearchInput}
+            />
+          </TextField.Root>
         </div>
       </fieldset>
 

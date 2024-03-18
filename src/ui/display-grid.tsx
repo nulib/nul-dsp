@@ -1,3 +1,4 @@
+import { Box, Grid } from "@radix-ui/themes";
 import React, { ForwardedRef } from "react";
 
 import clsx from "clsx";
@@ -8,16 +9,26 @@ type Children = {
 
 export function DisplayGrid({ children }: Children) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 ">{children}</div>
+    <Grid
+      display="grid"
+      columns={{
+        initial: "1",
+        md: "3fr 1fr",
+      }}
+      justify="between"
+      width="100%"
+    >
+      {children}
+    </Grid>
   );
 }
 
 export const DisplayGridBigColumn = React.forwardRef(
   (props: Children, ref: ForwardedRef<HTMLDivElement>) => {
     return (
-      <div ref={ref} className="lg:col-span-9 h-120">
+      <Box ref={ref} className="h-120">
         {props.children}
-      </div>
+      </Box>
     );
   }
 );
@@ -30,14 +41,12 @@ export function DisplayGridSmallColumn({
   children: React.ReactNode;
   classNames?: string;
 }) {
+  console.log("classNames", classNames);
   return (
-    <div
-      className={clsx(
-        `overflow-auto lg:col-span-3 lg:h-120 h-64`,
-        classNames && classNames
-      )}
+    <Box
+      className={clsx(`overflow-auto lg:h-120 h-64`, classNames && classNames)}
     >
       {children}
-    </div>
+    </Box>
   );
 }
