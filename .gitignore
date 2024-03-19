@@ -40,6 +40,8 @@ next-env.d.ts
 
 # Datasets
 src/lib/data/vectors_full.ndjson
+
+# Playwright
 /test-results/
 /playwright-report/
 /blob-report/
