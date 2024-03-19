@@ -18,7 +18,9 @@ export default function NavBar() {
         <Flex asChild justify="between">
           <nav>
             <Box>
-              <Link href="/">logo</Link>
+              <Link href="/" data-testid="logo">
+                logo
+              </Link>
             </Box>
             <Flex gap="6">
               {navItems.map((item) => (
