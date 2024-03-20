@@ -52,7 +52,7 @@ export default function Interactive() {
   );
 
   return (
-    <DisplayGrid>
+    <DisplayGrid inverted>
       <DisplayGridSmallColumn>
         {!activeWork && <p>Click on a point to see Work details</p>}
         {activeWork && <Details activeWork={activeWork} />}

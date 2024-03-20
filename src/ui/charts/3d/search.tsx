@@ -26,7 +26,6 @@ export default function Search() {
       const q = e.target.value;
       if (q.length > 2) {
         const results = await searchDCApi(q);
-        console.log("results", results);
 
         const resultsWithVectors = results?.map((item) => ({
           ...item,

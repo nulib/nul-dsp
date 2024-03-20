@@ -44,7 +44,11 @@ type Vectors = {
  */
 const searchDCApiSchema = z.object({
   id: z.string(),
-  collection: z.string(),
+  collection: z.object({
+    description: z.string(),
+    id: z.string(),
+    title: z.string(),
+  }),
   title: z.string(),
   thumbnail: z.string(),
   work_type: z.string(),

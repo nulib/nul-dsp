@@ -95,10 +95,12 @@ export async function searchDCApi(q: string) {
 
     const searchDCApiSchemaArray = z.array(searchDCApiSchema);
     const nulWorks = searchDCApiSchemaArray.safeParse(json.data);
+    console.log("nulWorks", nulWorks);
 
     if (nulWorks.success) {
       return nulWorks.data;
     } else {
+      console.error(nulWorks.error.issues);
       throw new Error("Type error(s) in searchDCApiSchema");
     }
   } catch (error) {

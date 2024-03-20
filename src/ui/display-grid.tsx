@@ -5,15 +5,16 @@ import clsx from "clsx";
 
 type Children = {
   children: React.ReactNode;
+  inverted?: boolean;
 };
 
-export function DisplayGrid({ children }: Children) {
+export function DisplayGrid({ children, inverted }: Children) {
   return (
     <Grid
       display="grid"
       columns={{
         initial: "1",
-        md: "3fr 1fr",
+        md: inverted ? "1fr 3fr" : "3fr 1fr",
       }}
       justify="between"
       width="100%"
