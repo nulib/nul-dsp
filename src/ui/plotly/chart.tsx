@@ -1,5 +1,6 @@
 "use client";
 
+import { ExtendedPlotMouseEvent } from "@/lib/definitions";
 import React from "react";
 import dynamic from "next/dynamic";
 
@@ -9,7 +10,7 @@ const Plot = dynamic(() => import("react-plotly.js"), {
 });
 
 type MemoChartProps = {
-  handlePlotItemClick?: (data: any) => void;
+  handlePlotItemClick?: (data: Readonly<ExtendedPlotMouseEvent>) => void;
   traces: Plotly.Data[];
 };
 

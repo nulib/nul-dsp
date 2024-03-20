@@ -1,19 +1,20 @@
 "use client";
 
+import { NULWorkWithVectors, ThinData } from "@/lib/definitions";
+
 import { CHART_COLORS } from "@/lib/colors";
 import Chart from "@/ui/plotly/chart";
-import Pre from "../../pre";
-import { ThinData } from "@/lib/definitions";
+import Pre from "@/ui/pre";
 import { getSampleData } from "@/lib/dc-api";
 
 type CollectionThinData = ThinData & {
   collection: string;
 };
 
-function filterByCollection(collection: string, data: any) {
+function filterByCollection(collection: string, data: NULWorkWithVectors[]) {
   return data
-    .filter((item: any) => item.collection === collection)
-    .map((item: any) => ({
+    .filter((item) => item.collection === collection)
+    .map((item) => ({
       id: item.id,
       x: item.x,
       y: item.y,

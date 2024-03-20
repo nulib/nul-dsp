@@ -1,4 +1,11 @@
-export function getRangeEndpointValues(data: any[], targetKey: string) {
+type Data = {
+  id: string;
+  title: string;
+  x: number;
+  y: number;
+};
+
+export function getRangeEndpointValues(data: Data[], targetKey: "x" | "y") {
   let highest = -Infinity;
   let lowest = Infinity;
 

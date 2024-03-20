@@ -5,25 +5,28 @@ import {
   DisplayGridBigColumn,
   DisplayGridSmallColumn,
 } from "@/ui/display-grid";
+import { SearchDCApiSchema, Vectors } from "@/lib/definitions";
 
 import { CHART_COLORS } from "@/lib/colors";
 import Chart from "@/ui/plotly/chart";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import Pre from "@/ui/pre";
 import { TextField } from "@radix-ui/themes";
-import { Work } from "@nulib/dcapi-types";
 import { searchDCApi } from "@/lib/dc-api";
 import { useDebouncedCallback } from "use-debounce";
 import { useState } from "react";
 
+type SearchData = SearchDCApiSchema & Vectors;
+
 export default function Search() {
-  const [data, setData] = useState<Work>();
+  const [data, setData] = useState<SearchData[]>();
 
   const handleSearchInput = useDebouncedCallback(
     async (e: React.ChangeEvent<HTMLInputElement>) => {
       const q = e.target.value;
       if (q.length > 2) {
         const results = await searchDCApi(q);
+        console.log("results", results);
 
         const resultsWithVectors = results?.map((item) => ({
           ...item,
@@ -82,7 +85,7 @@ export default function Search() {
 
       <DisplayGrid>
         <DisplayGridBigColumn>
-          {data && <Chart traces={[trace1]} />}
+          {data && <Chart traces={trace1 ? [trace1] : []} />}
         </DisplayGridBigColumn>
         <DisplayGridSmallColumn>
           <Pre>{JSON.stringify(data, null, 2)}</Pre>

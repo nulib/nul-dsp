@@ -1,15 +1,22 @@
-import { NULWork, ThinData, WorkPartial } from "./definitions";
+import {
+  NULWork,
+  NULWorkWithVectors,
+  ThinData,
+  WorkPartial,
+  searchDCApiSchema,
+} from "./definitions";
 
 import textAndVectorData from "@/lib/data/vectors_tsne_3d_300_count.json";
+import { z } from "zod";
 
 const DC_API_URL = "https://api.dc.library.northwestern.edu/api/v2";
 
 export function getSampleData() {
-  return textAndVectorData;
+  return textAndVectorData as unknown as NULWorkWithVectors[];
 }
 
-export function getThinData(data: any) {
-  const thinData = data.map((item: any) => {
+export function getThinData(data: NULWorkWithVectors[]) {
+  const thinData = data.map((item: NULWorkWithVectors) => {
     return {
       id: item.id,
       title: item.title,
@@ -21,8 +28,8 @@ export function getThinData(data: any) {
   return thinData as ThinData[];
 }
 
-export function get2DThinData(data: any) {
-  const thinData = data.map((item: any) => {
+export function get2DThinData(data: NULWorkWithVectors[]) {
+  const thinData = data.map((item: NULWorkWithVectors) => {
     return {
       id: item.id,
       title: item.title,
@@ -85,7 +92,15 @@ export async function searchDCApi(q: string) {
       body: JSON.stringify(query),
     });
     const json = await response.json();
-    return json.data as unknown as NULWork;
+
+    const searchDCApiSchemaArray = z.array(searchDCApiSchema);
+    const nulWorks = searchDCApiSchemaArray.safeParse(json.data);
+
+    if (nulWorks.success) {
+      return nulWorks.data;
+    } else {
+      throw new Error("Type error(s) in searchDCApiSchema");
+    }
   } catch (error) {
     console.error("Error fetching search data", error);
   }

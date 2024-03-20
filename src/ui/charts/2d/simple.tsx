@@ -5,7 +5,7 @@ import {
   DisplayGridBigColumn,
   DisplayGridSmallColumn,
 } from "@/ui/display-grid";
-import { get2DThinData, getSampleData, getThinData } from "@/lib/dc-api";
+import { get2DThinData, getSampleData } from "@/lib/dc-api";
 
 import Pre from "@/ui/pre";
 import Scatterplot from "@/ui/d3/scatter-plot";

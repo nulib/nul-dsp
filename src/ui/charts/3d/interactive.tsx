@@ -10,6 +10,7 @@ import { useCallback, useState } from "react";
 import { CHART_COLORS } from "@/lib/colors";
 import Chart from "@/ui/plotly/chart";
 import Details from "../../plotly/details";
+import { ExtendedPlotMouseEvent } from "@/lib/definitions";
 import { Work } from "@nulib/dcapi-types";
 import { getSampleData } from "@/lib/dc-api";
 import { getWork } from "@/lib/dc-api";
@@ -39,12 +40,16 @@ const trace1 = {
 export default function Interactive() {
   const [activeWork, setActiveWork] = useState<Partial<Work> | null>(null);
 
-  const handlePlotItemClick = useCallback(async (data: any) => {
-    const workId = data.points[0].id;
-    const work = await getWork(workId);
+  const handlePlotItemClick = useCallback(
+    async (data: ExtendedPlotMouseEvent) => {
+      console.log("data", data);
+      const workId = data.points[0].id;
+      const work = workId ? await getWork(workId) : null;
 
-    setActiveWork(work);
-  }, []);
+      setActiveWork(work);
+    },
+    []
+  );
 
   return (
     <DisplayGrid>
