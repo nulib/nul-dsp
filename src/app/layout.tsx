@@ -22,8 +22,7 @@ export default function RootLayout({
         <Theme appearance="light">
           <Flex width="100%" direction="column">
             <NavBar />
-            <Box py="5"></Box>
-            {children}
+            <Box py="8">{children}</Box>
           </Flex>
         </Theme>
       </body>

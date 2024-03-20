@@ -1,9 +1,10 @@
 import { Box, Container, Flex, Link } from "@radix-ui/themes";
 
 const navItems = [
-  { label: "Projects", href: "/" },
-  { label: "Data Sets", href: "/" },
-  { label: "Contact", href: "/" },
+  { label: "Log In", href: "/" },
+  { label: "Welcome, Ralph", href: "/" },
+  { label: "3-d Charts", href: "/charts/3d" },
+  { label: "2-d Charts", href: "/charts/2d" },
 ];
 
 export default function NavBar() {
