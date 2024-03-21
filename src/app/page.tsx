@@ -33,7 +33,7 @@ const panels = [
 export default function Home() {
   return (
     <Container>
-      <Section className="bg-gray-200" width="100%" height="8"></Section>
+      <Section className="bg-gray-200" width="100%" mt="8"></Section>
       <Section width="100%" pb="0">
         <Grid columns="3" gap="5" className="h-72">
           {panels.map(({ heading, subheading, buttons }) => (
@@ -62,7 +62,7 @@ export default function Home() {
       </Section>
       <Section>
         <Heading className="pb-5">Models</Heading>
-        <Grid columns="2" rows="2" gap="3">
+        <Grid columns="2" rows="2" gap="5">
           {Array.from({ length: 4 }).map((_, i) => (
             <Box key={i} className="bg-gray-400 h-36"></Box>
           ))}

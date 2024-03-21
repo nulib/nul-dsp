@@ -1,10 +1,9 @@
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
 
-import { Box, Flex, Theme } from "@radix-ui/themes";
-
 import type { Metadata } from "next";
 import NavBar from "@/ui/layout/navbar";
+import { Theme } from "@radix-ui/themes";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,10 +19,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-mono`}>
         <Theme appearance="light">
-          <Flex width="100%" direction="column">
-            <NavBar />
-            <Box py="8">{children}</Box>
-          </Flex>
+          <NavBar />
+          <main>{children}</main>
         </Theme>
       </body>
     </html>

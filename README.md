@@ -2,6 +2,9 @@
 
 A NextJS UI application for the NUL Data Science Project.
 
+Public preview branch:
+https://main.d3nyatpv9uoqqk.amplifyapp.com/
+
 ## Visualizations
 
 Features visualizations of vector clustering. 3-d Scatterplots are visualized using [Plotly.js](https://plotly.com/javascript/) and, and the 2-d scatterplot is visualized using [D3.js](https://d3js.org/).
