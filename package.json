@@ -27,6 +27,7 @@
     "use-debounce": "^10.0.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.8.5",
     "@nulib/dcapi-types": "^2.1.0",
     "@playwright/test": "^1.42.1",
     "@types/d3": "^7.4.3",
