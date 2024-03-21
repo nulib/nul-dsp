@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <Container>
       <Section
-        style={{ backgroundColor: "var(--test-gray" }}
+        style={{ backgroundColor: "var(--gray-4" }}
         width="100%"
         mt="8"
       ></Section>
@@ -77,7 +77,7 @@ export default function Home() {
                 display="block"
                 p="8"
                 style={{
-                  backgroundColor: "var(--test-gray)",
+                  backgroundColor: "var(--gray-5)",
                 }}
               ></Box>
             ))}

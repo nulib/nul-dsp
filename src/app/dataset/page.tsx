@@ -1,16 +1,29 @@
-import { Container, Grid, Section } from "@radix-ui/themes";
+import { Box, Container, Grid, Heading, Section } from "@radix-ui/themes";
 
-import SingleTrace from "@/ui/charts/3d/single-trace";
+import Link from "next/link";
+import { mockDatasets } from "@/lib/get-dataset";
 
-export default function DatasetPage() {
+export default function DataSetAllPage() {
   return (
-    <Section className="bg-white h-96">
+    <Section>
       <Container>
-        <Grid columns="3fr 1fr" gap="5">
-          <div className="bg-gray-400">
-            <SingleTrace />
-          </div>
-          <div className="bg-gray-400">Buttons</div>
+        <Box pb="5">
+          <Heading>All Datasets</Heading>
+        </Box>
+        <Grid columns="3" gap="5">
+          {mockDatasets.map(({ id, name }) => (
+            <Link key={id} href={`/dataset/${id}`}>
+              <Box
+                p="9"
+                style={{
+                  backgroundColor: "var(--gray-10)",
+                  color: "white",
+                }}
+              >
+                <Heading size="4">{name}</Heading>
+              </Box>
+            </Link>
+          ))}
         </Grid>
       </Container>
     </Section>

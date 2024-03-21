@@ -12,12 +12,19 @@ export default function DatasetLayout({
     <Section>
       <Container>
         <Heading>[Dynamic Project here]</Heading>
-        <Flex width="100%" py="8" justify="between">
+        <Flex
+          width="100%"
+          py="6"
+          mb="6"
+          justify="between"
+          style={{
+            borderBottom: `1px solid var(--gray-3)`,
+          }}
+        >
           <ProjectData />
           <EmbedModelSelector />
         </Flex>
       </Container>
-
       {children}
     </Section>
   );
