@@ -9,16 +9,16 @@ export default function DatasetLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Container>
-      <Section>
+    <Section>
+      <Container>
         <Heading>[Dynamic Project here]</Heading>
         <Flex width="100%" py="8" justify="between">
           <ProjectData />
           <EmbedModelSelector />
         </Flex>
+      </Container>
 
-        {children}
-      </Section>
-    </Container>
+      {children}
+    </Section>
   );
 }

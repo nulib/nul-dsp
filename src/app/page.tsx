@@ -33,18 +33,25 @@ const panels = [
 export default function Home() {
   return (
     <Container>
-      <Section className="bg-gray-200" width="100%" mt="8"></Section>
+      <Section
+        style={{ backgroundColor: "var(--test-gray" }}
+        width="100%"
+        mt="8"
+      ></Section>
       <Section width="100%" pb="0">
-        <Grid columns="3" gap="5" className="h-72">
+        <Grid columns="3" gap="5">
           {panels.map(({ heading, subheading, buttons }) => (
             <Flex
               key={heading}
               direction="column"
               justify="center"
               align="center"
-              p="6"
+              p="8"
               grow="1"
-              className="bg-gray-600 text-white"
+              style={{
+                backgroundColor: "var(--gray-10)",
+                color: "white",
+              }}
             >
               <Heading>{heading}</Heading>
               <Text>{subheading}</Text>
@@ -61,12 +68,21 @@ export default function Home() {
         </Grid>
       </Section>
       <Section>
-        <Heading className="pb-5">Models</Heading>
-        <Grid columns="2" rows="2" gap="5">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <Box key={i} className="bg-gray-400 h-36"></Box>
-          ))}
-        </Grid>
+        <Flex width="100%" gap="5" direction="column">
+          <Heading>Models</Heading>
+          <Grid columns="2" rows="2" gap="5">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <Box
+                key={i}
+                display="block"
+                p="8"
+                style={{
+                  backgroundColor: "var(--test-gray)",
+                }}
+              ></Box>
+            ))}
+          </Grid>
+        </Flex>
       </Section>
     </Container>
   );
