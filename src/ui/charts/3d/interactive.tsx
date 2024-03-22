@@ -5,13 +5,12 @@ import {
   DisplayGridBigColumn,
   DisplayGridSmallColumn,
 } from "@/ui/display-grid";
+import { ExtendedPlotMouseEvent, NULWork } from "@/lib/definitions";
 import { useCallback, useState } from "react";
 
 import { CHART_COLORS } from "@/lib/colors";
 import Chart from "@/ui/plotly/chart";
-import Details from "../../plotly/details";
-import { ExtendedPlotMouseEvent } from "@/lib/definitions";
-import { Work } from "@nulib/dcapi-types";
+import ImageCard from "@/ui/image-card";
 import { getSampleData } from "@/lib/dc-api";
 import { getWork } from "@/lib/dc-api";
 
@@ -38,11 +37,10 @@ const trace1 = {
 } as Plotly.Data;
 
 export default function Interactive() {
-  const [activeWork, setActiveWork] = useState<Partial<Work> | null>(null);
+  const [activeWork, setActiveWork] = useState<Partial<NULWork> | null>(null);
 
   const handlePlotItemClick = useCallback(
     async (data: ExtendedPlotMouseEvent) => {
-      console.log("data", data);
       const workId = data.points[0].id;
       const work = workId ? await getWork(workId) : null;
 
@@ -55,7 +53,7 @@ export default function Interactive() {
     <DisplayGrid inverted>
       <DisplayGridSmallColumn>
         {!activeWork && <p>Click on a point to see Work details</p>}
-        {activeWork && <Details activeWork={activeWork} />}
+        {activeWork && <ImageCard activeWork={activeWork} />}
       </DisplayGridSmallColumn>
       <DisplayGridBigColumn>
         <Chart traces={[trace1]} handlePlotItemClick={handlePlotItemClick} />
