@@ -14,7 +14,7 @@ type MemoChartProps = {
   traces: Plotly.Data[];
 };
 
-const MemoChart = React.memo(function Memo({
+const Plotly3dChart = React.memo(function Memo({
   handlePlotItemClick,
   traces,
 }: MemoChartProps) {
@@ -31,7 +31,6 @@ const MemoChart = React.memo(function Memo({
 
   return (
     <Plot
-      className=""
       data={traces}
       layout={layout}
       useResizeHandler
@@ -41,4 +40,4 @@ const MemoChart = React.memo(function Memo({
   );
 });
 
-export default MemoChart;
+export default Plotly3dChart;

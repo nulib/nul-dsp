@@ -8,6 +8,7 @@ import { getSampleData, getThinData } from "@/lib/dc-api";
 import { CHART_COLORS } from "@/lib/colors";
 import Chart from "@/ui/plotly/chart";
 import Pre from "@/ui/pre";
+import { sleep } from "@/lib/get-dataset";
 
 const data = getSampleData();
 const thinData = getThinData(data);
@@ -32,7 +33,9 @@ const trace1 = {
   hoverinfo: "text",
 } as Plotly.Data;
 
-export default function SingleTrace() {
+export default async function SingleTrace() {
+  await sleep(3000);
+
   return (
     <DisplayGrid>
       <DisplayGridBigColumn>

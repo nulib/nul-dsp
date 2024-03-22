@@ -1,7 +1,7 @@
 import { Container, Flex, Heading, Section } from "@radix-ui/themes";
 
-import EmbedModelSelector from "@/ui/dataset/embed-model-selector";
-import ProjectData from "@/ui/dataset/project-data";
+import EmbedModelSelector from "@/ui/datasets/embed-model-selector";
+import ProjectData from "@/ui/datasets/project-data";
 
 export default function DatasetLayout({
   children,

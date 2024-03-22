@@ -1,11 +1,10 @@
-"use client";
-
 import { NULWorkWithVectors, ThinData } from "@/lib/definitions";
 
 import { CHART_COLORS } from "@/lib/colors";
 import Chart from "@/ui/plotly/chart";
 import Pre from "@/ui/pre";
 import { getSampleData } from "@/lib/dc-api";
+import { sleep } from "@/lib/get-dataset";
 
 type CollectionThinData = ThinData & {
   collection: string;
@@ -62,7 +61,9 @@ const trace1 = createTrace(data1, CHART_COLORS.purpleLight);
 const trace2 = createTrace(data2, CHART_COLORS.blue);
 const trace3 = createTrace(data3, CHART_COLORS.red);
 
-export default function MultipleTrace() {
+export default async function MultipleTrace() {
+  await sleep(3000);
+
   return (
     <>
       <Chart traces={[trace1, trace2, trace3]} />

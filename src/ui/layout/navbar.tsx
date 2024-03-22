@@ -3,7 +3,7 @@ import { Box, Container, Flex, Link } from "@radix-ui/themes";
 const navItems = [
   { label: "Log In", href: "/" },
   { label: "Welcome, Ralph", href: "/" },
-  { label: "View Datasets", href: "/dataset" },
+  { label: "View Datasets", href: "/datasets" },
   { label: "3-d Charts", href: "/charts/3d" },
   { label: "2-d Charts", href: "/charts/2d" },
 ];
