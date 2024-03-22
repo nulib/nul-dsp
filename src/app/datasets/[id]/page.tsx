@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid, Heading } from "@radix-ui/themes";
+import { Box, Container, Grid, Heading } from "@radix-ui/themes";
 
 import DatasetButtons from "@/ui/datasets/buttons";
 import Plotly3dChart from "@/ui/plotly/chart";

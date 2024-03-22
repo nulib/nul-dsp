@@ -1,35 +1,28 @@
-import Divider from "@/ui/divider";
-import Headline from "@/ui/headline";
+import { Box, Container, Heading, Section } from "@radix-ui/themes";
+
 import Interactive from "@/ui/charts/3d/interactive";
-import MultipleTrace from "@/ui/charts/3d/multiple-trace";
 import Search from "@/ui/charts/3d/search";
-import SingleTrace from "@/ui/charts/3d/single-trace";
 
 export default function ThreeDPage() {
   return (
-    <main>
-      <div className="container mb-20">
-        <Headline>3D Charts</Headline>
+    <>
+      <Section>
+        <Container>
+          <Box pb="5">
+            <Heading as="h2">Search NUL Data</Heading>
+          </Box>
+          <Search />
+        </Container>
+      </Section>
 
-        <div className="space-y-10">
-          <Divider label="Single Trace: plotly.js" />
-          <section>
-            <SingleTrace />
-          </section>
-          <Divider label="Multiple Trace plotly.js" />
-          <section>
-            <MultipleTrace />
-          </section>
-          <Divider label="Search plotly.js" />
-          <section>
-            <Search />
-          </section>
-          <Divider label="Interactive plot selection" />
-          <section>
-            <Interactive />
-          </section>
-        </div>
-      </div>
-    </main>
+      <Section>
+        <Container>
+          <Box pb="5">
+            <Heading as="h2">Interact with Data</Heading>
+          </Box>
+          <Interactive />
+        </Container>
+      </Section>
+    </>
   );
 }

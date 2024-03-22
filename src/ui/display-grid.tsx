@@ -1,7 +1,5 @@
-import { Box, Grid } from "@radix-ui/themes";
+import { Box, Grid, ScrollArea } from "@radix-ui/themes";
 import React, { ForwardedRef } from "react";
-
-import clsx from "clsx";
 
 type Children = {
   children: React.ReactNode;
@@ -27,7 +25,12 @@ export function DisplayGrid({ children, inverted }: Children) {
 export const DisplayGridBigColumn = React.forwardRef(
   (props: Children, ref: ForwardedRef<HTMLDivElement>) => {
     return (
-      <Box ref={ref} className="h-120">
+      <Box
+        ref={ref}
+        style={{
+          height: "calc(100vh - 20vh)",
+        }}
+      >
         {props.children}
       </Box>
     );
@@ -37,16 +40,18 @@ DisplayGridBigColumn.displayName = "DisplayGridBigColumn";
 
 export function DisplayGridSmallColumn({
   children,
-  classNames,
 }: {
   children: React.ReactNode;
-  classNames?: string;
 }) {
   return (
-    <Box
-      className={clsx(`overflow-auto lg:h-120 h-64`, classNames && classNames)}
+    <ScrollArea
+      size="1"
+      type="auto"
+      style={{
+        height: "calc(100vh - 20vh)",
+      }}
     >
       {children}
-    </Box>
+    </ScrollArea>
   );
 }

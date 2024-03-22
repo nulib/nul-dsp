@@ -49,7 +49,7 @@ export default function Home() {
               p="8"
               grow="1"
               style={{
-                backgroundColor: "var(--gray-10)",
+                backgroundColor: "var(--gray-11)",
                 color: "white",
               }}
             >

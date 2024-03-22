@@ -1,5 +1,6 @@
 "use client";
 
+import { Box, TextField } from "@radix-ui/themes";
 import {
   DisplayGrid,
   DisplayGridBigColumn,
@@ -10,8 +11,6 @@ import { SearchDCApiSchema, Vectors } from "@/lib/definitions";
 import { CHART_COLORS } from "@/lib/colors";
 import Chart from "@/ui/plotly/chart";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import Pre from "@/ui/pre";
-import { TextField } from "@radix-ui/themes";
 import { searchDCApi } from "@/lib/dc-api";
 import { useDebouncedCallback } from "use-debounce";
 import { useState } from "react";
@@ -63,31 +62,27 @@ export default function Search() {
 
   return (
     <>
-      <fieldset className="mb-5 lg:w-1/2">
-        <label htmlFor="search" className="">
-          Search
-        </label>
-        <div className="mt-2">
-          <TextField.Root>
-            <TextField.Slot>
-              <MagnifyingGlassIcon height="16" width="16" />
-            </TextField.Slot>
-            <TextField.Input
-              placeholder="Search NUL API"
-              id="search"
-              name="search"
-              onChange={handleSearchInput}
-            />
-          </TextField.Root>
-        </div>
-      </fieldset>
+      <Box pb="5">
+        <TextField.Root>
+          <TextField.Slot>
+            <MagnifyingGlassIcon height="16" width="16" />
+          </TextField.Slot>
+          <TextField.Input
+            placeholder="Search NUL API"
+            id="search"
+            name="search"
+            variant="soft"
+            onChange={handleSearchInput}
+          />
+        </TextField.Root>
+      </Box>
 
       <DisplayGrid>
         <DisplayGridBigColumn>
           {data && <Chart traces={trace1 ? [trace1] : []} />}
         </DisplayGridBigColumn>
         <DisplayGridSmallColumn>
-          <Pre>{JSON.stringify(data, null, 2)}</Pre>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
         </DisplayGridSmallColumn>
       </DisplayGrid>
     </>

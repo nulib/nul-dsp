@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Flex } from "@radix-ui/themes";
+import { Button, Flex } from "@radix-ui/themes";
 
 const buttons = [
   {
