@@ -42,6 +42,21 @@ type Vectors = {
 /**
  * Zod schemas
  */
+const chicagoCorpusSchema = z.object({
+  row: z.string(),
+  data: z.object({
+    "": z.string(),
+    date: z.string(),
+    chunk: z.string(),
+    author: z.string(),
+    sentence: z.string(),
+    article_id: z.string(),
+    article_title: z.string(),
+  }),
+  vector: z.tuple([z.number(), z.number(), z.number()]),
+});
+type ChicagoCorpusSchema = z.infer<typeof chicagoCorpusSchema>;
+
 const searchDCApiSchema = z.object({
   id: z.string(),
   collection: z.object({
@@ -56,6 +71,8 @@ const searchDCApiSchema = z.object({
 type SearchDCApiSchema = z.infer<typeof searchDCApiSchema>;
 
 export {
+  chicagoCorpusSchema,
+  type ChicagoCorpusSchema,
   type NULWork,
   type NULWorkWithVectors,
   type ExtendedPlotMouseEvent,
